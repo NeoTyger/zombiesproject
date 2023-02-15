@@ -13,8 +13,13 @@ public class MouseLook : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Centrar el cursor.
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked; // Para asegurar que se bloquee despues de no verse
+
+        // Establecer la rotación inicial del jugador.
+        transform.rotation = Quaternion.identity;
     }
 
     // Update is called once per frame
