@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CharacterController _controller;
 
     // Velocidad de movimiento para el jugador
-    public float speed = 5.0f;
+    public float speed = 10.0f;
     
     // Variables para la garvedad
     private Vector3 velocity;
@@ -38,12 +38,10 @@ public class PlayerMovement : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         // Calcula la dirección del movimiento
-        Vector3 direction = new Vector3(horizontalInput, 0, verticalInput);
-        direction = transform.TransformDirection(direction);
+        //Vector3 direction = new Vector3(horizontalInput, 0, verticalInput);
+        Vector3 movement = transform.right * horizontalInput + transform.forward * verticalInput;
+        _controller.Move(movement * speed * Time.deltaTime);
 
-        // Calcula el movimiento completo multiplicando por la velocidad y el tiempo
-        transform.position += direction * speed * Time.deltaTime;
-        
         // Gravedad
         // Fórmula: velocidad = aceleración * tiempo ^ 2
         velocity.y += gravity * Time.deltaTime;
