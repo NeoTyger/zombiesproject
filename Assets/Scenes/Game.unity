@@ -391,6 +391,12 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!1 &1959051913 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 159119329600460333, guid: df28f64355935e0439ec6877365e586b,
+    type: 3}
+  m_PrefabInstance: {fileID: 159119329490060453}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &159119329490060453
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -458,6 +464,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7002200100482342378, guid: df28f64355935e0439ec6877365e586b,
+        type: 3}
+      propertyPath: range
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7002200100482342378, guid: df28f64355935e0439ec6877365e586b,
+        type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 1959051913}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df28f64355935e0439ec6877365e586b, type: 3}
 --- !u!1 &159119329490060454 stripped
