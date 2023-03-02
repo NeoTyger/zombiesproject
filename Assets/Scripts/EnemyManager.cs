@@ -11,6 +11,9 @@ public class EnemyManager : MonoBehaviour
 
     public float damage = 20f;
     
+    // Salut de l'enemic
+    public float health = 100f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,4 +51,17 @@ public class EnemyManager : MonoBehaviour
             PlayerManager.Hit(damage);
         }
     }
+    
+    public void Hit(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            // Destrium a l'enemic quan la seva salut arriba a zero
+            // feim referència a ell amb la variable gameObject, que fa referència al GO
+            // que conté el componentn EnemyManager
+            Destroy(gameObject);
+        }
+    }
+
 }

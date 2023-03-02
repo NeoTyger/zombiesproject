@@ -7,6 +7,8 @@ public class WeaponManager : MonoBehaviour
     
     public GameObject playerCam; // Fa referència a la càmera del jugador FPS
     public float range = 100f; // Fins on volem que arribin els tirs
+    
+    public float damage = 25f;
 
     
     // Start is called before the first frame update
@@ -25,7 +27,7 @@ public class WeaponManager : MonoBehaviour
     }
 
 
-    public void Shoot()
+   /*public void Shoot()
     {
         
         // Crea un rayo
@@ -45,5 +47,21 @@ public class WeaponManager : MonoBehaviour
             // No es necesario realizar ninguna acción adicional
             Debug.Log("No hit");
         }
-    }
+    }*/
+   
+   private void Shoot()
+   {
+       RaycastHit hit;
+       if (Physics.Raycast(playerCam.transform.position, transform.forward, out hit, range))
+       {
+           //Debug.Log("Tocat!");
+           // Si no hem ferit a un Zombie, la component EnemyManager valdrà null, però sinò prendrà el valor de la component del Zombie que hem ferit.
+           EnemyManager enemyManager = hit.transform.GetComponent<EnemyManager>();
+           if(enemyManager != null)
+           {
+               enemyManager.Hit(damage);
+           }
+       }
+   }
+
 }
