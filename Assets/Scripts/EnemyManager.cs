@@ -8,6 +8,7 @@ public class EnemyManager : MonoBehaviour
 
     public GameObject player;
     public Animator enemyAnimator;
+    public GameManager gameManager;
 
     public float damage = 20f;
     
@@ -21,6 +22,7 @@ public class EnemyManager : MonoBehaviour
         // des de l'inspector, sinò que l'assginarem des del codi
         // En concret volem cercar al jugador principal!!
         player = GameObject.FindGameObjectWithTag("Player");
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -61,6 +63,7 @@ public class EnemyManager : MonoBehaviour
             // feim referència a ell amb la variable gameObject, que fa referència al GO
             // que conté el componentn EnemyManager
             Destroy(gameObject);
+            gameManager.enemiesAlive--;
         }
     }
 
