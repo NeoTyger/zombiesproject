@@ -48,8 +48,8 @@ public class EnemyManager : MonoBehaviour
     {
         if(collision.gameObject == player)
         {
-            Debug.Log("L'enemic m'ataca!!");
-            Debug.Log( "Health: " + PlayerManager.health + "ActualHealth: " + (PlayerManager.health - damage));
+            //Debug.Log("L'enemic m'ataca!!");
+            //Debug.Log( "Health: " + PlayerManager.health + "ActualHealth: " + (PlayerManager.health - damage));
             PlayerManager.Hit(damage);
         }
     }
