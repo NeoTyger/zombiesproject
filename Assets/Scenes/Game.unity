@@ -2750,6 +2750,11 @@ PrefabInstance:
       objectReference: {fileID: 1959051913}
     - target: {fileID: 7002200100482342378, guid: df28f64355935e0439ec6877365e586b,
         type: 3}
+      propertyPath: _weaponAudio
+      value: 
+      objectReference: {fileID: 1925059581}
+    - target: {fileID: 7002200100482342378, guid: df28f64355935e0439ec6877365e586b,
+        type: 3}
       propertyPath: playerAnimator
       value: 
       objectReference: {fileID: 159119329490060460}
