@@ -42,7 +42,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public static void Hit(float damage)
+    public void Hit(float damage)
     {
         health -= damage;
         hitPanel.alpha = 1;

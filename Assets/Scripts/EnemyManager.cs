@@ -17,6 +17,13 @@ public class EnemyManager : MonoBehaviour
     public float health = 100f;
 
     public Slider healthBar;
+    
+    // Animacio i millora del xoc
+    public bool playerInReach;
+    public float attackDelayTimer;
+    public float howMuchEarlierStartAttackAnimation = 1f;
+    public float delayBetweenAttacks = 0.6f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -56,10 +63,48 @@ public class EnemyManager : MonoBehaviour
         {
             //Debug.Log("L'enemic m'ataca!!");
             //Debug.Log( "Health: " + PlayerManager.health + "ActualHealth: " + (PlayerManager.health - damage));
-            PlayerManager.Hit(damage);
+            //PlayerManager.Hit(damage);
+            
+            if(collision.gameObject == player)
+            {
+                //Debug.Log("L'enemic m'ataca!!");
+                //player.GetComponent<PlayerManager>().hit(damage);
+                playerInReach = true;
+
+            }
+
         }
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (playerInReach)
+        {
+            attackDelayTimer += Time.deltaTime;
+            if (attackDelayTimer >= delayBetweenAttacks - howMuchEarlierStartAttackAnimation &&
+                attackDelayTimer <= delayBetweenAttacks)
+            {
+                enemyAnimator.SetTrigger("isAttacking");
+            }
+            if(attackDelayTimer >= delayBetweenAttacks)
+            {
+                player.GetComponent<PlayerManager>().Hit(damage);
+                attackDelayTimer = 0;
+            }
+        }
+
+    }
     
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject == player)
+        {
+            playerInReach = false;
+            attackDelayTimer = 0;
+        }
+    }
+
+
     public void Hit(float damage)
     {
         health -= damage;
@@ -72,6 +117,13 @@ public class EnemyManager : MonoBehaviour
             // que conté el componentn EnemyManager
             Destroy(gameObject);
             gameManager.enemiesAlive--;
+            
+            enemyAnimator.SetTrigger("IsDead");
+            
+            Destroy(gameObject,10f);
+            Destroy(GetComponent<NavMeshAgent>());
+            Destroy(GetComponent<EnemyManager>());
+            Destroy(GetComponent<CapsuleCollider>());
         }
     }
 
