@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class EnemyManager : MonoBehaviour
     // Salut de l'enemic
     public float health = 100f;
 
+    public Slider healthBar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +26,9 @@ public class EnemyManager : MonoBehaviour
         // En concret volem cercar al jugador principal!!
         player = GameObject.FindGameObjectWithTag("Player");
         gameManager = FindObjectOfType<GameManager>();
+        
+        healthBar.maxValue = health;
+        healthBar.value = health;
     }
 
     // Update is called once per frame
@@ -57,6 +63,8 @@ public class EnemyManager : MonoBehaviour
     public void Hit(float damage)
     {
         health -= damage;
+        healthBar.value = health;
+        
         if (health <= 0)
         {
             // Destrium a l'enemic quan la seva salut arriba a zero

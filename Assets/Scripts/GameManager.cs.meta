@@ -3,7 +3,12 @@ guid: fad355503bd2dd846954aa9828ad8339
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - enemyPrefab: {fileID: 3584166083153568749, guid: efae5df64bee4f94caa7305223411f63,
+      type: 3}
+  - txtHp: {instanceID: 0}
+  - txtRound: {instanceID: 0}
+  - pausePanel: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
