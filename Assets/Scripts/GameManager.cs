@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +20,31 @@ public class GameManager : MonoBehaviour
 
     public GameObject pausePanel;
 
+    public bool isPaused;
+    public bool isGameOver;
+    
+    public GameObject gameOverPanel;
+
+    public static GameManager sharedInstance;
+
+    private void Awake()
+    {
+        if (sharedInstance == null)
+        {
+            sharedInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void Start()
+    {
+        isPaused = false;
+        isGameOver = false;
+        Time.timeScale = 1;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -29,6 +56,11 @@ public class GameManager : MonoBehaviour
 
         txtHp.text = "HP : " + PlayerManager.health;
         txtRound.text = "Round : " + round;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause();
+        }
     }
 
     public void NextWave(int numRound)
@@ -59,6 +91,8 @@ public class GameManager : MonoBehaviour
         pausePanel.SetActive(true);
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
+
+        isPaused = true;
     }
     
     public void Resume()
@@ -66,5 +100,17 @@ public class GameManager : MonoBehaviour
         pausePanel.SetActive(false);
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
+
+        isPaused = false;
+    }
+
+    public void GameOver()
+    {
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        isGameOver = true;
     }
 }

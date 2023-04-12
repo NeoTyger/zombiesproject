@@ -10,7 +10,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CharacterController _controller;
 
     // Velocidad de movimiento para el jugador
-    public float speed = 10.0f;
+    public float speed;
+    public float walkSpeed = 5f;
+    public float runSpeed = 10f;
     
     // Variables para la garvedad
     private Vector3 velocity;
@@ -58,6 +60,15 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
+        }
+
+        if (Input.GetButton("Fire3") && isGrounded)
+        {
+            speed = runSpeed;
+        }
+        else
+        {
+            speed = walkSpeed;
         }
     }
 }

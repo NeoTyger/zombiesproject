@@ -15,9 +15,11 @@ public class PlayerManager : MonoBehaviour
     private float shakeDuration = 0.5f;
     private Quaternion playerCameraOriginalRotation;
 
-    public static CanvasGroup hitPanel;
+    public CanvasGroup hitPanel;
 
-    
+    public GameManager gameManager;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +51,8 @@ public class PlayerManager : MonoBehaviour
 
         if (health <= 0)
         {
-            SceneManager.LoadScene("Game");
+            gameManager.GameOver();
+            //SceneManager.LoadScene("Game");
         }
     }
     

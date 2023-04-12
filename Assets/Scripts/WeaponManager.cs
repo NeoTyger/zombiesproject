@@ -8,7 +8,7 @@ public class WeaponManager : MonoBehaviour
     public GameObject playerCam; // Fa referència a la càmera del jugador FPS
     public float range = 100f; // Fins on volem que arribin els tirs
     
-    public float damage = 25f;
+    public float damage = 10f;
 
     public Animator playerAnimator;
     
@@ -28,14 +28,17 @@ public class WeaponManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerAnimator.GetBool("isShooting"))
+        if (GameManager.sharedInstance.isPaused && GameManager.sharedInstance.isGameOver)
         {
-            playerAnimator.SetBool("isShooting", false);
-        }
-        
-        if (Input.GetMouseButton(0)) 
-        {
-           Shoot(); 
+            if (playerAnimator.GetBool("isShooting"))
+            {
+                playerAnimator.SetBool("isShooting", false);
+            }
+
+            if (Input.GetMouseButton(0))
+            {
+                Shoot();
+            }
         }
     }
 
