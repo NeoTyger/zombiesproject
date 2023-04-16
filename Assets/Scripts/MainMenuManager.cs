@@ -15,4 +15,18 @@ public class MainMenuManager : MonoBehaviour
     {
         
     }
+    
+    public void Singleplayer()
+    {
+        
+    }
+    
+    public void Exit()
+    {
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }
