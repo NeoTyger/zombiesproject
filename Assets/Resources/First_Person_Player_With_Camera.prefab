@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3480271076518262900}
   - component: {fileID: 3480271076518262911}
   - component: {fileID: 2994851782306636926}
+  - component: {fileID: 2619769327674029813}
   m_Layer: 0
   m_Name: First_Person_Player_With_Camera
   m_TagString: Player
@@ -98,6 +99,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   jumpHeight: 2
+  photonView: {fileID: 2994851782306636926}
 --- !u!135 &3480271076518262901
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -146,6 +148,7 @@ MonoBehaviour:
   playerCamera: {fileID: 3636980184098549328}
   hitPanel: {fileID: 3636980183799650224}
   gameManager: {fileID: 3636980183612676771}
+  photonView: {fileID: 2994851782306636926}
 --- !u!114 &2994851782306636926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,10 +167,29 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 2619769327674029813}
+  - {fileID: 2163143910805456732}
+  - {fileID: 6263891427970023841}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &2619769327674029813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535490115745354953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &548722077318066283
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,6 +459,8 @@ GameObject:
   - component: {fileID: 3804809350579647973}
   - component: {fileID: 5595333165994738990}
   - component: {fileID: 3636980184958011699}
+  - component: {fileID: 2163143910805456732}
+  - component: {fileID: 6263891427970023841}
   m_Layer: 0
   m_Name: FPS_Character
   m_TagString: Untagged
@@ -472,7 +496,7 @@ Animator:
   m_GameObject: {fileID: 2267744711983989326}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b0c45e18f1c68544c82380d3e968d171, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -498,6 +522,44 @@ MonoBehaviour:
   mouseSensitivity: 500
   verticalRotationLimit: 80
   verticalRotation: 0
+  photonView: {fileID: 2994851782306636926}
+--- !u!114 &2163143910805456732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2267744711983989326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &6263891427970023841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2267744711983989326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 2
+    Name: isShooting
+  m_SynchronizeLayers:
+  - SynchronizeType: 2
+    LayerIndex: 0
 --- !u!1 &2329583507583973754
 GameObject:
   m_ObjectHideFlags: 0
@@ -2958,9 +3020,9 @@ Canvas:
   m_GameObject: {fileID: 3636980184594567773}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_RenderMode: 1
+  m_Camera: {fileID: 3636980184098549330}
+  m_PlaneDistance: 0.15
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -3587,6 +3649,11 @@ PrefabInstance:
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 3636980184098549328}
+    - target: {fileID: 2700399264620524716, guid: 6ffe500a9db1a1f4198b80b46bc35bc6,
+        type: 3}
+      propertyPath: photonView
+      value: 
+      objectReference: {fileID: 2994851782306636926}
     - target: {fileID: 2700399264620524716, guid: 6ffe500a9db1a1f4198b80b46bc35bc6,
         type: 3}
       propertyPath: _weaponAudio

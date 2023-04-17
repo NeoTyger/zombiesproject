@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 539643200}
   m_Layer: 0
   m_Name: Spawner (0)
-  m_TagString: Untagged
+  m_TagString: Spawners
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 685553769}
   m_Layer: 0
   m_Name: Spawner (4)
-  m_TagString: Untagged
+  m_TagString: Spawners
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 1000931135}
   m_Layer: 0
   m_Name: Spawner (3)
-  m_TagString: Untagged
+  m_TagString: Spawners
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 1751845537}
   m_Layer: 0
   m_Name: Spawner (2)
-  m_TagString: Untagged
+  m_TagString: Spawners
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 1845012241}
   m_Layer: 0
   m_Name: Spawner (1)
-  m_TagString: Untagged
+  m_TagString: Spawners
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

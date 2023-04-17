@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class PlayerManager : MonoBehaviour
     public CanvasGroup hitPanel;
 
     public GameManager gameManager;
+    
+    public PhotonView photonView;
 
 
     // Start is called before the first frame update
@@ -29,6 +32,12 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PhotonNetwork.InRoom && !photonView.IsMine)
+        {
+            playerCamera.gameObject.SetActive(false);
+            return;
+        }
+        
         if(shakeTime < shakeDuration)
         {
             shakeTime += Time.deltaTime;

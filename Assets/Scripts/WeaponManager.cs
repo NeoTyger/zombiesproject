@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
@@ -17,6 +18,8 @@ public class WeaponManager : MonoBehaviour
     public GameObject bloodParticleSystem;
     
     private AudioSource weaponAudio;
+    
+    public PhotonView photonView;
 
 
     // Start is called before the first frame update
@@ -28,6 +31,11 @@ public class WeaponManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PhotonNetwork.InRoom && !photonView.IsMine)
+        {
+            return;
+        }
+        
         if (GameManager.sharedInstance.isPaused && GameManager.sharedInstance.isGameOver)
         {
             if (playerAnimator.GetBool("isShooting"))
