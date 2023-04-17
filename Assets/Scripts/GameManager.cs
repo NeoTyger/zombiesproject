@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
         isPaused = false;
         isGameOver = false;
         Time.timeScale = 1;
+
+        spawnPoints = GameObject.FindGameObjectsWithTag("Spawners");
     }
 
     // Update is called once per frame

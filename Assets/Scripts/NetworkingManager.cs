@@ -67,6 +67,6 @@ public class NetworkingManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Cargar escena del juego Multiplayer");
-        SceneManager.LoadScene(2);
+        PhotonNetwork.LoadLevel(2);
     }
 }
