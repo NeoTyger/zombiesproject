@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             if (PhotonNetwork.InRoom)
             { 
-                enemyInstance = PhotonNetwork.Instantiate("Zombie", spawnPoints[numRandom].transform.position, Quaternion.identity);
+                enemyInstance = PhotonNetwork.Instantiate("MyZombie", spawnPoints[numRandom].transform.position, Quaternion.identity);
             }
             else
             { 

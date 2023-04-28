@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -24,6 +25,10 @@ public class EnemyManager : MonoBehaviour
     public float howMuchEarlierStartAttackAnimation = 1f;
     public float delayBetweenAttacks = 0.6f;
 
+    public AudioSource enemyAudioSource;
+    public AudioClip[] growlAudioClips;
+
+    private GameObject[] playersInScene;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +36,7 @@ public class EnemyManager : MonoBehaviour
         // Aquest cop, no arrossegarem la variable GameObject del FPS
         // des de l'inspector, sinò que l'assginarem des del codi
         // En concret volem cercar al jugador principal!!
-        player = GameObject.FindGameObjectWithTag("Player");
+        playersInScene = GameObject.FindGameObjectsWithTag("Player");
         gameManager = FindObjectOfType<GameManager>();
         
         healthBar.maxValue = health;
@@ -41,10 +46,29 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Accedim al component NavMeshComponent, el qual té un element que es destination de tipus Vector3
-        // Li podem assignar la posició del jugador, que el tenim a la variable player gràcies al seu tranform
-        GetComponent<NavMeshAgent>().destination = player.transform.position;
+
+        if (!enemyAudioSource.isPlaying)
+        {
+            enemyAudioSource.clip = growlAudioClips[Random.Range(0, growlAudioClips.Length)];
+            enemyAudioSource.Play();
+        }
+
+        if (PhotonNetwork.InRoom && !PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
         
+        GetClosesPlayer();
+        if (player != null)
+        {
+            // Accedim al component NavMeshComponent, el qual té un element que es destination de tipus Vector3
+            // Li podem assignar la posició del jugador, que el tenim a la variable player gràcies al seu tranform
+            GetComponent<NavMeshAgent>().destination = player.transform.position;
+        
+            // D'aquesta forma ens aseguram de veure sa barra de vida encara que es ZOmbie estigui de costat
+            healthBar.transform.LookAt(player.transform);
+        }
+
         // En primer lloc hem d'accedir a la velocitat del Zombiem, des del component NavMeshAgent
         if (GetComponent<NavMeshAgent>().velocity.magnitude > 1)
         {
@@ -127,4 +151,23 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    private void GetClosesPlayer()
+    {
+        float minDistance = Mathf.Infinity;
+        Vector3 currentPosition = transform.position;
+
+        foreach (GameObject p in playersInScene)
+        {
+            if (p != null)
+            {
+                float distance = Vector3.Distance(p.transform.position, currentPosition);
+                
+                if (distance < minDistance)
+                {
+                    player = p;
+                    minDistance = distance;
+                }
+            }
+        }
+    }
 }
