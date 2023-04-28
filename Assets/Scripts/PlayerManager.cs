@@ -55,13 +55,33 @@ public class PlayerManager : MonoBehaviour
 
     public void Hit(float damage)
     {
-        health -= damage;
-        hitPanel.alpha = 1;
-
-        if (health <= 0)
+        if (PhotonNetwork.InRoom)
         {
-            gameManager.GameOver();
-            //SceneManager.LoadScene("Game");
+            photonView.RPC("PlayerTakeDamage", RpcTarget.All, damage, photonView.ViewID);
+        }
+        else
+        {
+            PlayerTakeDamage(damage, photonView.ViewID);
+        }
+    }
+
+    [PunRPC]
+    public void PlayerTakeDamage(float damage, int viewID)
+    {
+        if (photonView.ViewID == viewID)
+        {
+            health -= damage;
+
+            if (health <= 0)
+            {
+                gameManager.GameOver();
+                //SceneManager.LoadScene("Game");
+            }
+            else
+            {
+                shakeTime = 0;
+                hitPanel.alpha = 1;
+            }
         }
     }
     

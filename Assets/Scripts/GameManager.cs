@@ -96,20 +96,47 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void RestartGame()
     {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(1);
+        if (!PhotonNetwork.InRoom)
+        {
+            Time.timeScale = 1; // Tornar a posar es temps
+            SceneManager.LoadScene(2);
+        }
+        else
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 
     public void BackToMainMenu()
     {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(0);
+        if (!PhotonNetwork.InRoom)
+        {
+            Time.timeScale = 1; // Tornar a posar es temps
+        }
+        Invoke("LoadMainMenuScene", 0.5f);
+    }
+
+    public void LoadMainMenuScene()
+    {
+        if (PhotonNetwork.InRoom)
+        {
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
     }
     
     public void Pause()
     {
         pausePanel.SetActive(true);
-        Time.timeScale = 0;
+        
+        if (!PhotonNetwork.InRoom)
+        {
+            Time.timeScale = 0; // Aturar es temps
+        }
+        
         Cursor.lockState = CursorLockMode.None;
 
         isPaused = true;
@@ -118,7 +145,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void Resume()
     {
         pausePanel.SetActive(false);
-        Time.timeScale = 1;
+        
+        if (!PhotonNetwork.InRoom)
+        {
+            Time.timeScale = 1; // Tornar a posar es temps
+        }
+        
         Cursor.lockState = CursorLockMode.Locked;
 
         isPaused = false;
@@ -127,7 +159,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void GameOver()
     {
         gameOverPanel.SetActive(true);
-        Time.timeScale = 0;
+        
+        if (!PhotonNetwork.InRoom)
+        {
+            Time.timeScale = 0; // Aturar es temps
+        }
+        
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 

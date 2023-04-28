@@ -30,6 +30,8 @@ public class EnemyManager : MonoBehaviour
 
     private GameObject[] playersInScene;
 
+    public PhotonView photonView;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -131,23 +133,37 @@ public class EnemyManager : MonoBehaviour
 
     public void Hit(float damage)
     {
-        health -= damage;
-        healthBar.value = health;
-        
-        if (health <= 0)
+        photonView.RPC("TakeDamage", RpcTarget.All, damage, photonView.ViewID);
+    }
+    
+    [PunRPC]
+    public void TakeDamage(float damage, int viewID)
+    {
+        if (photonView.ViewID == viewID)
         {
-            // Destrium a l'enemic quan la seva salut arriba a zero
-            // feim referència a ell amb la variable gameObject, que fa referència al GO
-            // que conté el componentn EnemyManager
-            Destroy(gameObject);
-            gameManager.enemiesAlive--;
+            health -= damage;
+            healthBar.value = health;
+        
+            if (health <= 0)
+            {
+                // Destrium a l'enemic quan la seva salut arriba a zero
+                // feim referència a ell amb la variable gameObject, que fa referència al GO
+                // que conté el componentn EnemyManager
+                Destroy(gameObject);
+                gameManager.enemiesAlive--;
             
-            enemyAnimator.SetTrigger("IsDead");
+                enemyAnimator.SetTrigger("IsDead");
             
-            Destroy(gameObject,10f);
-            Destroy(GetComponent<NavMeshAgent>());
-            Destroy(GetComponent<EnemyManager>());
-            Destroy(GetComponent<CapsuleCollider>());
+                Destroy(gameObject,10f);
+                Destroy(GetComponent<NavMeshAgent>());
+                Destroy(GetComponent<EnemyManager>());
+                Destroy(GetComponent<CapsuleCollider>());
+
+                if (!PhotonNetwork.InRoom || (PhotonNetwork.IsMasterClient && photonView.IsMine))
+                {
+                    gameManager.enemiesAlive--;
+                }
+            }
         }
     }
 

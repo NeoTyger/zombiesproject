@@ -1032,6 +1032,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4c285a791c630e7478685ebcf5a3cc19, type: 3}
   - {fileID: 8300000, guid: 110d2c2db57f0794e8521485d7c53f36, type: 3}
   - {fileID: 8300000, guid: 119480eacbb7d944f9af8d37bb87a35e, type: 3}
+  photonView: {fileID: 8595317872701041926}
 --- !u!195 &6183336936087285436
 NavMeshAgent:
   m_ObjectHideFlags: 0
