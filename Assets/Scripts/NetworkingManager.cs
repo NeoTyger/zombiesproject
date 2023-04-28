@@ -15,6 +15,10 @@ public class NetworkingManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+        if (PhotonNetwork.IsConnected)
+        {
+            StartCoroutine(DissconnectPlayer());
+        }
         Debug.Log("Conectando con el servidor...");
         PhotonNetwork.ConnectUsingSettings();
     }
@@ -23,6 +27,16 @@ public class NetworkingManager : MonoBehaviourPunCallbacks
     void Update()
     {
         
+    }
+
+    IEnumerator DissconnectPlayer()
+    {
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.Disconnect();
+        while (PhotonNetwork.IsConnected)
+        {
+            yield return null;
+        }
     }
 
     public override void OnConnectedToMaster()
@@ -68,5 +82,11 @@ public class NetworkingManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Cargar escena del juego Multiplayer");
         PhotonNetwork.LoadLevel(2);
+    }
+
+    public void LoadMainMenu()
+    {
+        PhotonNetwork.Disconnect();
+        SceneManager.LoadScene(0);
     }
 }

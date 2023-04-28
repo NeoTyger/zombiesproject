@@ -23,6 +23,8 @@ public class WeaponManager : MonoBehaviour
 
     public GameManager gameManager;
 
+    public AudioClip shootClip;
+
 
     // Start is called before the first frame update
     void Start()
@@ -52,35 +54,19 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-
-   /*public void Shoot()
-    {
-        
-        // Crea un rayo
-        Ray ray = new Ray(playerCam.transform.position, transform.forward);
-        
-        // Realiza el Raycast
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, range))
-        {
-            // El rayo intersecta con algún objeto del escenario
-            // Realiza las acciones correspondientes, como infligir daño al objeto o activar una animación de impacto
-            Debug.Log("Hit object: " + hit.transform.name);
-        }
-        else
-        {
-            // El rayo no intersecta con ningún objeto del escenario
-            // No es necesario realizar ninguna acción adicional
-            Debug.Log("No hit");
-        }
-    }*/
-   
-   private void Shoot()
+    private void Shoot()
    {
-       weaponAudio.Play();
-       playerAnimator.SetBool("isShooting", true);
-       flashParticleSystem.Play();
+       if (PhotonNetwork.InRoom)
+       {
+           photonView.RPC("WeaponShootSFX", RpcTarget.All, photonView.ViewID);
+       }
+       else
+       {
+           ShootVFX(photonView.ViewID);
+       }
        
+       playerAnimator.SetBool("isShooting", true);
+
        RaycastHit hit;
        if (Physics.Raycast(playerCam.transform.position, transform.forward, out hit, range))
        {
@@ -100,5 +86,14 @@ public class WeaponManager : MonoBehaviour
            }
        }
    }
+
+    public void ShootVFX(int viewID)
+    {
+        if (photonView.ViewID == viewID)
+        {
+            flashParticleSystem.Play();
+            weaponAudio.PlayOneShot(shootClip, 0.75f);
+        }
+    }
 
 }

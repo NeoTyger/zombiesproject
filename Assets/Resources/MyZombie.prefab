@@ -1027,7 +1027,7 @@ MonoBehaviour:
   attackDelayTimer: 0
   howMuchEarlierStartAttackAnimation: 1
   delayBetweenAttacks: 0.6
-  enemyAudioSource: {fileID: 0}
+  enemyAudioSource: {fileID: 3855961102749324541}
   growlAudioClips:
   - {fileID: 8300000, guid: 4c285a791c630e7478685ebcf5a3cc19, type: 3}
   - {fileID: 8300000, guid: 110d2c2db57f0794e8521485d7c53f36, type: 3}
@@ -1065,7 +1065,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 110d2c2db57f0794e8521485d7c53f36, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 0.5

@@ -22,6 +22,8 @@ public class PlayerManager : MonoBehaviour
     
     public PhotonView photonView;
 
+    public GameObject activeWeapon;
+
 
     // Start is called before the first frame update
     void Start()
@@ -90,4 +92,9 @@ public class PlayerManager : MonoBehaviour
         playerCamera.transform.localRotation = Quaternion.Euler(Random.Range(-2f, 2f), 0, 0);
     }
 
+    [PunRPC]
+    public void WeaponShootSFX(int viewID)
+    {
+        activeWeapon.GetComponent<WeaponManager>().ShootVFX(viewID);
+    }
 }

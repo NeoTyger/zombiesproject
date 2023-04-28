@@ -42,7 +42,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Vector3 spawnPosition = new Vector3(Random.Range(-3f, 3f), 2, Random.Range(-3f, 3f));
+        Vector3 spawnPosition = new Vector3(Random.Range(-2f, 2f), 2, Random.Range(-2f, 2f));
 
         if (PhotonNetwork.InRoom)
         {
