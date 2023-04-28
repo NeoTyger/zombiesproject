@@ -21,6 +21,8 @@ public class WeaponManager : MonoBehaviour
     
     public PhotonView photonView;
 
+    public GameManager gameManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +38,7 @@ public class WeaponManager : MonoBehaviour
             return;
         }
         
-        if (GameManager.sharedInstance.isPaused && GameManager.sharedInstance.isGameOver)
+        if (!gameManager.isPaused && !gameManager.isGameOver)
         {
             if (playerAnimator.GetBool("isShooting"))
             {

@@ -1383,14 +1383,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  enemyPrefab: {fileID: 3584166083153568749, guid: efae5df64bee4f94caa7305223411f63,
-    type: 3}
   txtHp: {fileID: 3636980184145091548}
   txtRound: {fileID: 3636980184426919783}
   pausePanel: {fileID: 3636980185172024495}
   isPaused: 0
   isGameOver: 0
   gameOverPanel: {fileID: 3636980184349541236}
+  photonView: {fileID: 2994851782306636926}
 --- !u!1 &3636980183658566696
 GameObject:
   m_ObjectHideFlags: 0
@@ -3654,6 +3653,11 @@ PrefabInstance:
       propertyPath: photonView
       value: 
       objectReference: {fileID: 2994851782306636926}
+    - target: {fileID: 2700399264620524716, guid: 6ffe500a9db1a1f4198b80b46bc35bc6,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 3636980183612676771}
     - target: {fileID: 2700399264620524716, guid: 6ffe500a9db1a1f4198b80b46bc35bc6,
         type: 3}
       propertyPath: _weaponAudio

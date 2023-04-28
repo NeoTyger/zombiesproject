@@ -927,6 +927,7 @@ MonoBehaviour:
   isPaused: 0
   isGameOver: 0
   gameOverPanel: {fileID: 1971503020}
+  photonView: {fileID: 0}
 --- !u!4 &697755260
 Transform:
   m_ObjectHideFlags: 0
@@ -2789,6 +2790,11 @@ PrefabInstance:
       objectReference: {fileID: 1959051913}
     - target: {fileID: 7002200100482342378, guid: df28f64355935e0439ec6877365e586b,
         type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 697755259}
+    - target: {fileID: 7002200100482342378, guid: df28f64355935e0439ec6877365e586b,
+        type: 3}
       propertyPath: _weaponAudio
       value: 
       objectReference: {fileID: 1925059581}
@@ -2832,6 +2838,7 @@ MonoBehaviour:
   playerCamera: {fileID: 1959051913}
   hitPanel: {fileID: 340519784}
   gameManager: {fileID: 697755259}
+  photonView: {fileID: 0}
 --- !u!95 &159119329490060460
 Animator:
   serializedVersion: 5
